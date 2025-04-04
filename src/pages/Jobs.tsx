@@ -349,10 +349,10 @@ const Jobs = () => {
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-3xl font-bold tracking-tight mb-4">
-                {t("jobs.heading")}
+                {t("heading")}
               </h1>
               <p className="text-muted-foreground mb-6">
-                {t("jobs.subheading")}
+                {t("subheading")}
               </p>
               
               <form onSubmit={handleSearch} className="glass-card rounded-lg p-4 flex flex-col md:flex-row gap-4">
@@ -383,7 +383,7 @@ const Jobs = () => {
                 onClick={() => setIsFilterVisible(!isFilterVisible)}
               >
                 <Filter size={16} />
-                {isFilterVisible ? t("jobs.hideFilters") : t("jobs.showFilters")}
+                {isFilterVisible ? t("hideFilters") : t("showFilters")}
               </Button>
             </div>
           </div>
@@ -397,10 +397,10 @@ const Jobs = () => {
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="font-medium flex items-center gap-2">
                     <Filter size={18} />
-                    {t("jobs.filters")}
+                    {t("filters")}
                   </h2>
                   <Button variant="ghost" size="sm" onClick={resetFilters}>
-                    {t("jobs.reset")}
+                    {t("reset")}
                   </Button>
                 </div>
                 
@@ -487,7 +487,7 @@ const Jobs = () => {
                   </div>
                   
                   <Button className="w-full" onClick={applyFilters}>
-                    {t("jobs.applyFilters")}
+                    {t("applyFilters")}
                   </Button>
                 </div>
               </div>

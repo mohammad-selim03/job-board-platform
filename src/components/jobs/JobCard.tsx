@@ -132,7 +132,7 @@ export const JobCard = ({
       
       <div className="mt-4 pt-4 border-t border-border flex items-center justify-end">
         <Button asChild size="sm" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-          <Link to={`/jobs/${id}`}>{t("apply.now")}</Link>
+          <Link to={`/jobs/${id}`}>{t("Apply now")}</Link>
         </Button>
       </div>
     </div>

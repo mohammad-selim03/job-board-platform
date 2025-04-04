@@ -215,7 +215,7 @@ const JobDetail = () => {
                             className={`flex items-center gap-1 ${isSaved ? 'bg-secondary' : ''}`}
                           >
                             <Bookmark size={16} className={isSaved ? 'fill-current' : ''} />
-                            <span className="hidden sm:inline">{t("save.job")}</span>
+                            <span className="hidden sm:inline">{t("save")}</span>
                           </Button>
                           <Button 
                             variant="outline" 
@@ -224,7 +224,7 @@ const JobDetail = () => {
                             className="flex items-center gap-1"
                           >
                             <Share size={16} />
-                            <span className="hidden sm:inline">{t("share.job")}</span>
+                            <span className="hidden sm:inline">{t("share")}</span>
                           </Button>
                         </div>
                       </div>

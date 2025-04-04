@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Menu, LogOut, Home, Briefcase, ChevronRight } from "lucide-react";
@@ -20,19 +19,19 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  
+
   // Get navigation items based on user role
   const navItems = getNavItemsByRole(user?.role);
-  
+
   const handleLogout = () => {
     logout();
     navigate("/");
   };
-  
-  const userInitials = user 
-    ? `${user.firstName.charAt(0)}${user.lastName.charAt(0)}` 
+
+  const userInitials = user
+    ? `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`
     : "U";
-  
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Mobile Header */}
@@ -41,17 +40,26 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
           <Briefcase className="h-6 w-6 text-primary" />
           <span className="font-bold">AI Job Nexus</span>
         </Link>
-        
+
         <div className="flex items-center gap-2">
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" onClick={() => setIsMobileSidebarOpen(true)}>
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
+          <Sheet
+            open={isMobileSidebarOpen}
+            onOpenChange={setIsMobileSidebarOpen}
+          >
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileSidebarOpen(true)}
+              >
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+          </Sheet>
         </div>
       </header>
-      
+
       {/* Mobile Sidebar */}
       <MobileDashboardSidebar
         navItems={navItems}
@@ -60,7 +68,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         onLogout={handleLogout}
         currentPath={location.pathname}
       />
-      
+
       <div className="flex flex-1">
         {/* Desktop Sidebar */}
         <aside className="hidden border-r md:block md:w-64 lg:w-72">
@@ -71,7 +79,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                 <span className="font-bold">AI Job Nexus</span>
               </Link>
             </div>
-            
+
             <div className="flex-1 overflow-auto py-6 px-4">
               <nav className="flex flex-col gap-1">
                 {navItems.map((item) => {
@@ -93,7 +101,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                 })}
               </nav>
             </div>
-            
+
             <div className="border-t p-4">
               <div className="flex items-center gap-3">
                 <Avatar>
@@ -104,16 +112,18 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                   <p className="truncate text-sm font-medium">
                     {user?.firstName} {user?.lastName}
                   </p>
-                  <p className="truncate text-xs text-muted-foreground">{user?.email}</p>
+                  <p className="truncate text-xs text-muted-foreground">
+                    {user?.email}
+                  </p>
                 </div>
                 <Button variant="ghost" size="icon" onClick={handleLogout}>
                   <LogOut className="h-4 w-4" />
                   <span className="sr-only">Logout</span>
                 </Button>
               </div>
-              
+
               <Separator className="my-4" />
-              
+
               <Link
                 to="/"
                 className="flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors hover:bg-secondary"
@@ -127,13 +137,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
             </div>
           </div>
         </aside>
-        
+
         {/* Main Content */}
-        <main className="flex-1 overflow-auto">
-          {children}
-        </main>
+        <main className="flex-1 overflow-auto">{children}</main>
       </div>
-      
+
       {/* Footer is visible on mobile only */}
       <div className="md:hidden">
         <Footer />
